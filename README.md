@@ -2,14 +2,14 @@
 
 Uma calculadora de IMC (Peso / Altura ^2).
 
-###Checklist do Desafio
+### Checklist do Desafio
 * Criar classe IMC (Peso / Altura)​
 * Ler dados no app​
 * Calcular IMC ​
 * Exibir em uma lista
 
 
-####Próximos passos
+#### Próximos passos
 * Injeção de dependências
 * Gerenciamento de estado
 * Armazenamento local
