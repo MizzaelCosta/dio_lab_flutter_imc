@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../formatter.dart';
-import '../validator.dart';
+import '../utils/formatter.dart';
+import '../utils/validator.dart';
 
 class FieldCuston extends StatelessWidget {
   const FieldCuston({

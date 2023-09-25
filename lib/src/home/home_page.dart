@@ -1,11 +1,11 @@
-import 'package:dio_lab_flutter_imc/src/controllers/home_controller.dart';
-import 'package:dio_lab_flutter_imc/src/models/imc.dart';
+import 'package:dio_lab_flutter_imc/src/home/home_controller.dart';
+import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/formatter.dart';
 import '../utils/validator.dart';
-import '../utils/widgets/calculate_button.dart';
-import '../utils/widgets/field_custon.dart';
+import '../widgets/calculate_button.dart';
+import '../widgets/field_custon.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

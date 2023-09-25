@@ -1,4 +1,4 @@
-import 'package:dio_lab_flutter_imc/src/models/imc.dart';
+import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
 
 class HomeController {
   HomeController({
