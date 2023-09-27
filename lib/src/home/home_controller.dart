@@ -1,5 +1,5 @@
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
-import 'package:dio_lab_flutter_imc/src/repositories/repository.dart';
+import 'package:dio_lab_flutter_imc/src/repositories/storage_repository.dart';
 
 class HomeController {
   HomeController(

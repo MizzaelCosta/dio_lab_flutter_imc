@@ -1,6 +1,6 @@
 import 'package:dio_lab_flutter_imc/src/home/home_controller.dart';
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
-import 'package:dio_lab_flutter_imc/src/repositories/repository.dart';
+import 'package:dio_lab_flutter_imc/src/repositories/storage_repository.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/formatter.dart';
