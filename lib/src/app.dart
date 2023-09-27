@@ -1,4 +1,4 @@
-import 'package:dio_lab_flutter_imc/src/pages/home_page.dart';
+import 'package:dio_lab_flutter_imc/src/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {

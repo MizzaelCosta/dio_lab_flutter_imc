@@ -1,11 +1,14 @@
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
+import 'package:dio_lab_flutter_imc/src/repositories/repository.dart';
 
 class HomeController {
-  HomeController({
+  HomeController(
+    this._storage, {
     required this.imc,
   });
 
-  final imcList = <String>[];
+  final StorageRepository _storage;
+  var imcList = <String>[];
   IMC imc;
 
   String calculate({
@@ -16,5 +19,13 @@ class HomeController {
     imc.heigth = heigth;
 
     return imc.calculate();
+  }
+
+  Future<List<String>> getList(String key) async {
+    return _storage.getList(key);
+  }
+
+  Future<void> setList(String key, List<String> list) async {
+    await _storage.setList(key, list);
   }
 }

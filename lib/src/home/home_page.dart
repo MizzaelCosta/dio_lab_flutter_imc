@@ -1,5 +1,6 @@
 import 'package:dio_lab_flutter_imc/src/home/home_controller.dart';
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
+import 'package:dio_lab_flutter_imc/src/repositories/repository.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/formatter.dart';
@@ -18,7 +19,7 @@ class _HomeState extends State<Home> {
   final _formKey = GlobalKey<FormState>();
   final _weigth = TextEditingController(text: '0.000');
   final _heigth = TextEditingController(text: '0.00');
-  final _controller = HomeController(imc: IMC());
+  final _controller = HomeController(imc: IMC(), StorageRepository());
 
   @override
   void dispose() {
@@ -29,8 +30,30 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getList();
+  }
+
+  void getList() async {
+    _controller.imcList = await _controller.getList('imcList');
+    updateList();
+  }
+
+  void updateList() {
+    setState(() {
+      _weigth.text = '0.000';
+      _heigth.text = '0.00';
+    });
+  }
+
+  Future<void> setList(List<String> list) async {
+    await _controller.setList('imcList', list);
+    updateList();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    debugPrint('build');
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -86,37 +109,32 @@ class _HomeState extends State<Home> {
                     height: 40,
                   ),
                   CalculateButton(
-                    onPressed: () {
-                      (_formKey.currentState?.validate() ?? false)
-                          ? setState(
-                              () {
-                                final imc = _controller.calculate(
-                                  weigth: double.parse(_weigth.text),
-                                  heigth: double.parse(_heigth.text),
-                                );
+                    onPressed: () async {
+                      if (_formKey.currentState?.validate() ?? false) {
+                        final imc = _controller.calculate(
+                          weigth: double.parse(_weigth.text),
+                          heigth: double.parse(_heigth.text),
+                        );
 
-                                _controller.imcList.add(imc);
-                                _weigth.text = '0.000';
-                                _heigth.text = '0.00';
-
-                                debugPrint('onPressed');
-                              },
-                            )
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                behavior: SnackBarBehavior.floating,
-                                showCloseIcon: true,
-                                closeIconColor: Colors.red,
-                                backgroundColor: Colors.white,
-                                content: Text(
-                                  'Digite todos os campos para continuar!',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.red,
-                                  ),
-                                ),
+                        _controller.imcList.add(imc);
+                        await setList(_controller.imcList);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            behavior: SnackBarBehavior.floating,
+                            showCloseIcon: true,
+                            closeIconColor: Colors.red,
+                            backgroundColor: Colors.white,
+                            content: Text(
+                              'Digite todos os campos para continuar!',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.red,
                               ),
-                            );
+                            ),
+                          ),
+                        );
+                      }
                     },
                     child: const Text('Calcular IMC'),
                   ),
@@ -140,10 +158,9 @@ class _HomeState extends State<Home> {
                             overflow: TextOverflow.clip,
                           ),
                           IconButton(
-                            onPressed: () {
-                              setState(() {
-                                _controller.imcList.removeAt(index);
-                              });
+                            onPressed: () async {
+                              _controller.imcList.removeAt(index);
+                              await setList(_controller.imcList);
                             },
                             icon: const Icon(
                               Icons.close_rounded,
