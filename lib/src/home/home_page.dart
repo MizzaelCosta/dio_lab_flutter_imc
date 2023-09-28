@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final _formKey = GlobalKey<FormState>();
   final _weigth = TextEditingController(text: '0.000');
   final _heigth = TextEditingController(text: '0.00');
-  final _controller = HomeController(imc: IMC(), StorageRepository());
+  final _controller = HomeController(IMC(), StorageRepository(), <String>[]);
 
   @override
   void dispose() {
@@ -146,7 +146,6 @@ class _HomeState extends State<Home> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: _controller.imcList.length,
                     itemBuilder: (context, index) {
-                      debugPrint('ListView.Builder ${_formKey.currentState}');
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

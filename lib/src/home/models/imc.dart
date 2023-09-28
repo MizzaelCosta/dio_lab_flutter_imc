@@ -6,8 +6,8 @@ class IMC {
     this.heigth = 0.001,
   });
 
-  double? weigth;
-  double? heigth;
+  final double? weigth;
+  final double? heigth;
 
   String calculate() {
     double imc = (weigth! / pow(heigth!, 2));
@@ -34,5 +34,15 @@ class IMC {
     } else {
       return 'Obesidade mórbida';
     }
+  }
+
+  IMC copyWith({
+    double? weigth,
+    double? heigth,
+  }) {
+    return IMC(
+      weigth: weigth ?? this.weigth,
+      heigth: heigth ?? this.heigth,
+    );
   }
 }

@@ -1,24 +1,28 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
 import 'package:dio_lab_flutter_imc/src/repositories/storage_repository.dart';
 
 class HomeController {
   HomeController(
-    this._storage, {
-    required this.imc,
-  });
+    this._imc,
+    this._storage,
+    this.imcList,
+  );
 
   final StorageRepository _storage;
-  var imcList = <String>[];
-  IMC imc;
+  List<String> imcList;
+  IMC _imc;
 
   String calculate({
     required double weigth,
     required double heigth,
   }) {
-    imc.weigth = weigth;
-    imc.heigth = heigth;
+    _imc = _imc.copyWith(
+      weigth: weigth,
+      heigth: heigth,
+    );
 
-    return imc.calculate();
+    return _imc.calculate();
   }
 
   Future<List<String>> getList(String key) async {
