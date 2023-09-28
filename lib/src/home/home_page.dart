@@ -1,6 +1,6 @@
 import 'package:dio_lab_flutter_imc/src/home/home_controller.dart';
 import 'package:dio_lab_flutter_imc/src/home/models/imc.dart';
-import 'package:dio_lab_flutter_imc/src/repositories/storage_repository.dart';
+import 'package:dio_lab_flutter_imc/src/repositories/hive_repositoy.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/formatter.dart';
@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   final _formKey = GlobalKey<FormState>();
   final _weigth = TextEditingController(text: '0.000');
   final _heigth = TextEditingController(text: '0.00');
-  final _controller = HomeController(IMC(), StorageRepository(), <String>[]);
+  final _controller = HomeController(IMC(), HiveRepository(), <String>[]);
 
   @override
   void dispose() {
