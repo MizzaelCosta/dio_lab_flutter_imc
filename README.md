@@ -7,9 +7,9 @@ Uma calculadora de IMC (Peso / Altura ^2).
 * Ler dados no app​
 * Calcular IMC ​
 * Exibir em uma lista
+* Armazenamento local
 
 
 #### Próximos passos
 * Injeção de dependências
 * Gerenciamento de estado
-* Armazenamento local
